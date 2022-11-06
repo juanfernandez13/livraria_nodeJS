@@ -27,6 +27,15 @@ app.post('/livros', (req,res) => {
     res.status(201).send('Livro foi cadastrado com sucesso')
 });
 
+app.put('/livros/:id', (req,res) => {
+    const index = buscarLivro(req.params.id);
+    livros[index].titulo = req.body.titulo;
+    res.status(201).send('Livro foi alterado com sucesso')
+});
+
+const buscarLivro = (id) =>{
+    return livros.findIndex(livro => livro.id == id);
+};
 
 
 export default app;
