@@ -22,6 +22,11 @@ app.get('/livros/:id', (req,res) => {
     res.status(200).json(livros[index]);
 });
 
+app.post('/livros', (req,res) => {
+    livros.push(req.body);
+    res.status(201).send('Livro foi cadastrado com sucesso')
+});
+
 
 
 export default app;
