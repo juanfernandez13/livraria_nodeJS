@@ -33,9 +33,15 @@ app.put('/livros/:id', (req,res) => {
     res.status(201).send('Livro foi alterado com sucesso')
 });
 
+app.delete('/livros/:id', (req,res) => {
+    const {id} = req.params;
+    const index = buscarLivro(id);
+    livros.splice(index,1)
+    res.status(201).send(`Livro ${id} removido com sucesso`)
+});
+
 const buscarLivro = (id) =>{
     return livros.findIndex(livro => livro.id == id);
 };
-
 
 export default app;
