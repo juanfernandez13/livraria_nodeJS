@@ -7,5 +7,6 @@ router
     .get("/livros", LivroController.listarLivros)
     .get("/livros/:id", LivroController.listarLivrosPorID)
     .post("/livros", LivroController.cadastrarLivro)
+    .put("/livros/:id", LivroController.atualizarLivro)
 
 export default router;
