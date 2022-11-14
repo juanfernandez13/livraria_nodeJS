@@ -16,7 +16,35 @@ class AutorController {
         })
     }
 
+    static cadastrarAutor = (req,res) => {
+        const autor = new autores(req.body);
+        autor.save((err) => {
+            if(err){
+                res.status(500).send({message: `${err.message} - falha ao cadastrar o autor`});
+            } 
 
+            res.status(201).send(autor.toJSON()); 
+        })
+    }
+
+    static atualizarAutor = (req,res) => {
+        const id = req.params.id;
+        autores.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+            if(!err)
+                res.status(200).send({message:"Autor Atualizado com sucesso"})
+            else
+            res.status(500).send({message:"Autor não atualizado "})
+        })
+    }
+    static excluirAutor = (req,res) => {
+        const id = req.params.id;
+        autores.findByIdAndDelete(id, {$set: req.body}, (err) => {
+            if(!err)
+                res.status(200).send({message:"Autor deletado com sucesso"})
+            else
+            res.status(500).send({message:"Autor não deletado "})
+        })
+    }
 }
 
 export default AutorController;
