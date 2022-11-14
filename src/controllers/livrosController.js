@@ -36,7 +36,15 @@ class LivroController {
             res.status(500).send({message:"Livro não atualizado "})
         })
     }
-
+    static excluirLivro = (req,res) => {
+        const id = req.params.id;
+        livros.findByIdAndDelete(id, {$set: req.body}, (err) => {
+            if(!err)
+                res.status(200).send({message:"Livro deletado com sucesso"})
+            else
+            res.status(500).send({message:"Livro não deletado "})
+        })
+    }
 }
 
 export default LivroController;
